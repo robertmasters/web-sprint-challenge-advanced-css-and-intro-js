@@ -172,7 +172,7 @@ const artists = [
     {
       "id": 17,
       "name": "Frida Kahlo",
-      "years": "1907 - 1954",
+      "years": "1907 - 1954", 
       "genre": "Primitivism,Surrealism",
       "nationality": "Mexican",
       "bio": "Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist.",
@@ -208,10 +208,13 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
-
+console.log(artists[0].name);
+console.log(artists[2].bio);
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
-
+console.log(artists[8]);
+artists[8].name ="Vincent Van Gogh";
+console.log(artists[8]);
 
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
@@ -223,19 +226,34 @@ const artists = [
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(array, index) {
-    /* code here */
+    return "The artist at index "+array[index].id+" is "+array[index].name+"."
   }
-  
+  console.log(getArtistByIndex(artists,0));
   /**
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
+function get20s(array){
 
-  /* Code here */
-
+for (){
+  let born = Number(artists[19].years.substring(0, 4));
+  let die = Number(artists[19].years.substring(7, ));
 }
+}
+//id 19 "years": "1471 - 1528",
+
+//console.log(artists[2].years<1900-1800);
+let born = Number(artists[19].years.substring(0, 4));
+let die = Number(artists[19].years.substring(7, ));
+
+
+//test to assure that number is a string
+// if ('1471' === born){
+//   console.log('-----')
+// } else
+//   console.log('no');
+
 
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
