@@ -172,7 +172,7 @@ const artists = [
     {
       "id": 17,
       "name": "Frida Kahlo",
-      "years": "1907 - 1954",
+      "years": "1907 - 1954", 
       "genre": "Primitivism,Surrealism",
       "nationality": "Mexican",
       "bio": "Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist.",
@@ -208,10 +208,13 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
-
+console.log(artists[0].name);
+console.log(artists[2].bio);
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
-
+console.log(artists[8]);
+artists[8].name ="Vincent Van Gogh";
+console.log(artists[8]);
 
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
@@ -223,19 +226,36 @@ const artists = [
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(array, index) {
-    /* code here */
+    return "The artist at index "+array[index].id+" is "+array[index].name+"."
   }
-  
+  console.log(getArtistByIndex(artists,0));
   /**
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
+function get20s(arr){
+//  console.log(arr.length);//test to make sure entire array is being passed
 
-  /* Code here */
+let newArray = []; let born = 0; let die = 0;
 
+  for (let i = 0;i<arr.length;i++){
+    born = Number(arr[i].years.substring(0, 4)); // substring allows me to extract from the string using 2 parameters (start index, and end index) as the range. then wrapping the Number method converts that string into a number.
+    
+    //console.log(arr[i].name); // test to make sure the for loop is iterating correctly.
+    
+    die = Number(arr[i].years.substring(7, ));
+    if (born>=1900 && die<2000){
+      newArray.push(arr[i].name); // creating new array based on conditional 
+    }
+    
+  }
+  return newArray;
 }
+let newArr = get20s(artists);
+console.log(newArr);
+
+
 
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
@@ -248,9 +268,19 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
+function removeArtist(arr, index) {
+  // console.log("before: "+ arr.length);  //test of length before removing
+  arr.splice(index, 1)
+  // console.log("after: "+arr.length);  //test of length before removing
+    return arr.length;
   }
+
+
+console.log("before: "+ artists.length); //test of length before removing
+
+removeArtist(artists,2); // test may conflict with task 7 if object has paintings over 100 so thats why i selected object with index 2 which only has 70 paintings.
+
+console.log("after: "+artists.length); //test of length after removing
   
  
 
@@ -267,11 +297,23 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should return the new array with information added"*/
 
-function addArtist(/* Code here */){
+function addArtist(arr, name, years, genre, nationality, bio){
 
-    /* Code here */
-
+    return arr.push(
+        {
+          id:(arr.length+1), //gives the correct id based on the length of the array +1
+          name: name,
+          years: years,
+          genre: genre,
+          nationality: nationality,
+          bio: bio
+        }
+      );
   }
+
+  addArtist(artists, 'Robert Rodriguez', '1990-2020', 'Web Design', 'Mexican', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed bibendum sit amet turpis a convallis.');
+
+  console.log(artists);
 
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
@@ -281,11 +323,25 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
+function lotsOfArt(arr){
+  let newArray = [];
 
-  /* Code here */
+  console.log(arr);
 
+  for (let i = 0; i<arr.length;i++){
+
+    // console.log(arr[i].paintings);
+
+    if(arr[i].paintings > 100){
+      console.log("name " +arr[i].name + "p: "+arr[i].paintings);
+      newArray.push(arr[i].name);
+    }
+  }
+  return newArray;
 }
+
+let lotsArray = lotsOfArt(artists);
+console.log(lotsArray);
 
 
 
